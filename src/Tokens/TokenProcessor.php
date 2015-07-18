@@ -43,6 +43,8 @@
 
 namespace GanbaroDigital\TokenStreams\Tokens;
 
+use GanbaroDigital\TokenStreams\Streams\StreamState;
+
 interface TokenProcessor
 {
     /**
