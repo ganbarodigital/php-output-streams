@@ -2,5 +2,6 @@
 
 ## develop branch
 
-Nothing yet.
+### New
 
+* Streams\StreamState - container for data about the stream
