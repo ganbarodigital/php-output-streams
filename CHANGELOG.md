@@ -2,6 +2,12 @@
 
 ## develop branch
 
+Nothing yet.
+
+## 1.0.0 - Sat Jul 18 2015
+
+Initial release.
+
 ### New
 
 * Exceptions\Exxx_TokenStreamException - base class for all exceptions thrown by this library
@@ -9,6 +15,14 @@
 * Exceptions\E4xx_UnsupportedType - exception thrown when a method parameter is a bad type
 * Streams\BasicStreamHead - a stream head for you to extend with the typesafe writers of your choice
 * Streams\StreamState - container for data about the stream
+* StreamTypes\ArrayStream - interface for streams that accept an array as input
+* StreamTypes\BooleanStream - interface for streams that accept a boolean as input
+* StreamTypes\MixedStream - interface for streams that accept a number as input
+* StreamTypes\StringStream - interface for streams that accept a string as input
+* StreamTypes\TokenStream - interface for streams that accept tokens as input
+* Tokens\Token - interface for a token to implement
+* Tokens\Tokeniser - interface for a tokeniser to implement
+* Tokens\TokenProcessor - interface for a token processor to implement
 * TypesafeWriters\WriteArray - trait for streams that accept an array as input
 * TypesafeWriters\WriteBoolean - trait for streams that accept a boolean as input
 * TypesafeWriters\WriteMixed - trait for streams that accept numbers as input
