@@ -63,7 +63,7 @@ trait WriteMixed
     public function writeMixed($data)
     {
         // force writing the data as a string
-        if (is_int($data) || is_float($data)) {
+        if (is_numeric($data)) {
             $this->writeString((string)$data);
             return;
         }
