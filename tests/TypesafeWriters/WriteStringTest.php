@@ -60,7 +60,7 @@ class WriteStringTest_StreamHead extends BasicStreamHead implements StringStream
 /**
  * @coversDefaultClass GanbaroDigital\TokenStreams\TypesafeWriters\WriteString
  */
-class WriteArrayTest extends PHPUnit_Framework_TestCase
+class WriteStringTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @coversNothing
