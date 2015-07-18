@@ -112,4 +112,30 @@ class WriteArrayTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($expectedResult . $expectedResult, $writer->buffer);
     }
-}
+
+    /**
+     * @covers ::writeArray
+     */
+    public function testCanWriteArrayToStreamUsingGenericWriteMethod()
+    {
+        // ----------------------------------------------------------------
+        // setup your test
+
+        $state = new StreamState;
+        $tokeniser = new StreamHeadTest_Tokeniser;
+        $writer = new StreamHeadTest_TokenWriter;
+
+        $stream = new WriteArrayTest_StreamHead($state, $tokeniser, [], $writer);
+
+        $expectedResult = "I have an array typesafe writer";
+
+        // ----------------------------------------------------------------
+        // perform the change
+
+        $stream->write([$expectedResult, $expectedResult]);
+
+        // ----------------------------------------------------------------
+        // test the results
+
+        $this->assertEquals($expectedResult . $expectedResult, $writer->buffer);
+    }}
