@@ -11,4 +11,5 @@
 * Streams\StreamState - container for data about the stream
 * TypesafeWriters\WriteArray - trait for streams that accept an array as input
 * TypesafeWriters\WriteBoolean - trait for streams that accept a boolean as input
+* TypesafeWriters\WriteMixed - trait for streams that accept numbers as input
 * TypesafeWriters\WriteString - trait for streams that accept a string as input
