@@ -43,6 +43,7 @@
 
 namespace GanbaroDigital\TokenStreams\TypesafeWriters;
 
+use GanbaroDigital\Reflection\ValueBuilders\SimpleType;
 use GanbaroDigital\TokenStreams\Exceptions\E4xx_UnsupportedType;
 
 trait WriteMixed
@@ -73,6 +74,6 @@ trait WriteMixed
             return;
         }
 
-        throw new E4xx_UnsupportedType($data);
+        throw new E4xx_UnsupportedType(SimpleType::fromMixed($data));
     }
 }
