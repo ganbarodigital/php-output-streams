@@ -47,4 +47,26 @@ use GanbaroDigital\DataContainers\Containers\DataBag;
 
 class StreamState extends DataBag
 {
+    public function __construct()
+    {
+        $this->resetState();
+    }
+
+    /**
+     * reset the state of the stream
+     *
+     * override this if your initial stream state isn't meant to be
+     * an empty state
+     *
+     * @return void
+     */
+    public function resetState()
+    {
+        // what properties do we currently have?
+        $propNames = array_keys(get_object_vars($this));
+
+        foreach ($propNames as $propName) {
+            unset($this->$propName);
+        }
+    }
 }

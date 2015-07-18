@@ -45,8 +45,16 @@ namespace GanbaroDigital\TokenStreams\Streams;
 
 use PHPUnit_Framework_TestCase;
 
+class StreamStateTest_Target1 extends StreamState
+{
+    public function resetState()
+    {
+        $this->called = true;
+    }
+}
+
 /**
- * @coversDefault GanbaroDigital\TokenStreams\Streams\StreamState
+ * @coversDefaultClass GanbaroDigital\TokenStreams\Streams\StreamState
  */
 class StreamStateTest extends PHPUnit_Framework_TestCase
 {
@@ -69,6 +77,52 @@ class StreamStateTest extends PHPUnit_Framework_TestCase
         // test the results
 
         $this->assertTrue($obj instanceof StreamState);
+    }
+
+    /**
+     * @covers ::resetState
+     */
+    public function testCanResetState()
+    {
+        // ----------------------------------------------------------------
+        // setup your test
+
+        $obj = new StreamState;
+        $obj->one = 1;
+        $obj->two = 2;
+        $this->assertNotEquals(new StreamState, $obj);
+
+        // ----------------------------------------------------------------
+        // perform the change
+
+        $obj->resetState();
+
+        // ----------------------------------------------------------------
+        // test the results
+
+        $this->assertEquals(new StreamState, $obj);
+    }
+
+    /**
+     * @covers ::__construct
+     * @covers ::resetState
+     */
+    public function testResetStateCalledOnConstruction()
+    {
+        // ----------------------------------------------------------------
+        // setup your test
+
+
+
+        // ----------------------------------------------------------------
+        // perform the change
+
+        $obj = new StreamStateTest_Target1;
+
+        // ----------------------------------------------------------------
+        // test the results
+
+        $this->assertTrue(isset($obj->called));
     }
 
 }
