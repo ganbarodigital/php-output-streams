@@ -57,7 +57,7 @@ interface Tokeniser
      *         the current state of the stream
      * @return void
      */
-    public function reset(StreamState $state);
+    public function resetState(StreamState $state);
 
     /**
      * convert mixed data into one or more tokens
@@ -69,5 +69,5 @@ interface Tokeniser
      * @return array<Token>
      *         one or more tokens generated from the data
      */
-    public function write($data, StreamState $state);
+    public function tokenise($data, StreamState $state);
 }
