@@ -124,6 +124,34 @@ class BasicStreamHead
     }
 
     /**
+     * write an item of data to the stream
+     *
+     * if you know the type of the data you are writing, call the writeXXX()
+     * method instead for better performance
+     *
+     * @param  mixed $data
+     *         the data to write
+     * @return void
+     */
+    public function __invoke($data)
+    {
+        $this->write($data);
+    }
+
+    /**
+     * reset the stream, ready for a new set of output
+     *
+     * this tells the tokenizer to reset its internal state, because we are
+     * about to start sending through a new set of output
+     *
+     * @return void
+     */
+    public function resetState()
+    {
+        $this->tokeniser->resetState($this->streamState);
+    }
+
+    /**
      * tokenise data, and write it to the stream
      *
      * this is an entry point to call from a public writeXXX method

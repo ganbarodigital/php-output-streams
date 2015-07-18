@@ -91,7 +91,7 @@ class BasicStreamHeadTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::write
+     * @covers ::__invoke
      * @expectedException GanbaroDigital\TokenStreams\Exceptions\E4xx_UnsupportedType
      */
     public function testThrowsExceptionBecauseNoWritersSupported()
@@ -112,7 +112,55 @@ class BasicStreamHeadTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers ::__invoke
+     * @expectedException GanbaroDigital\TokenStreams\Exceptions\E4xx_UnsupportedType
+     */
+    public function testThrowsExceptionWhenUsedAsInvokeableBecauseNoWritersSupported()
+    {
+        // ----------------------------------------------------------------
+        // setup your test
+
+        $state = new StreamState;
+        $tokeniser = new StreamHeadTest_Tokeniser;
+        $writer = new StreamHeadTest_TokenWriter;
+
+        $stream = new BasicStreamHead($state, $tokeniser, [], $writer);
+
+        // ----------------------------------------------------------------
+        // perform the change
+
+        $stream("I have no typesafe writers!");
+    }
+
+    /**
+     * @covers ::resetState
+     */
+    public function testSupportsResettingStreamState()
+    {
+        // ----------------------------------------------------------------
+        // setup your test
+
+        $state = new StreamState;
+        $state->reset = false;
+        $tokeniser = new StreamHeadTest_Tokeniser;
+        $writer = new StreamHeadTest_TokenWriter;
+
+        $stream = new BasicStreamHead($state, $tokeniser, [], $writer);
+
+        // ----------------------------------------------------------------
+        // perform the change
+
+        $stream->resetState();
+
+        // ----------------------------------------------------------------
+        // test the results
+
+        $this->assertEquals(new StreamState, $state);
+    }
+
+    /**
      * @covers ::write
+     * @covers ::__invoke
      */
     public function testSupportsTypesafeWriters()
     {
@@ -131,11 +179,12 @@ class BasicStreamHeadTest extends PHPUnit_Framework_TestCase
         // perform the change
 
         $stream->write($expectedResult);
+        $stream($expectedResult);
 
         // ----------------------------------------------------------------
         // test the results
 
-        $this->assertEquals($expectedResult, $writer->buffer);
+        $this->assertEquals($expectedResult . $expectedResult, $writer->buffer);
     }
 
     /**
