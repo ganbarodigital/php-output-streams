@@ -66,4 +66,16 @@ trait WriteArray
             $this->write($item);
         }
     }
+
+    /**
+     * write an item of data to the stream
+     *
+     * if you know the type of the data you are writing, call the writeXXX()
+     * method instead for better performance
+     *
+     * @param  mixed $data
+     *         the data to write
+     * @return void
+     */
+    abstract public function write($data);
 }

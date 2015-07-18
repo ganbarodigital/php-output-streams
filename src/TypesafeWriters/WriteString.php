@@ -64,4 +64,15 @@ trait WriteString
         // let the StreamHead do all the work :)
         $this->tokeniseAndWriteToStream($data);
     }
+
+    /**
+     * tokenise data, and write it to the stream
+     *
+     * this is an entry point to call from a public writeXXX method
+     *
+     * @param  mixed $data
+     *         the data to tokenise and write to the stream
+     * @return void
+     */
+    abstract protected function tokeniseAndWriteToStream($data);
 }

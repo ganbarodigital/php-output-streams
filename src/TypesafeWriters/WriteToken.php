@@ -59,4 +59,15 @@ trait WriteToken
         // passthru to our internals
         $this->writeTokensToStream([ $token ]);
     }
+
+    /**
+     * send tokens to our token processors and the final token writer
+     *
+     * this is an entry point to call from a public writeXXX method
+     *
+     * @param  array $tokensToProcess
+     *         the tokens to process
+     * @return void
+     */
+    abstract protected function writeTokensToStream($tokensToProcess);
 }

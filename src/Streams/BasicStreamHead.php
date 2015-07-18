@@ -71,7 +71,7 @@ class BasicStreamHead
     /**
      * where we are going to send our final set of tokens to
      *
-     * @var TokenWriter
+     * @var TokenStream
      */
     private $tokenWriter;
 
@@ -89,7 +89,7 @@ class BasicStreamHead
      *        something to keep track of the state of the stream
      * @param Tokeniser    $tokeniser
      *        something to turn strings into tokens
-     * @param array<TokenProcessors> $tokenProcessors
+     * @param array<TokenProcessor> $tokenProcessors
      *        a (possibly empty) list of objects to manipulate the tokens
      *        that we receive
      * @param TokenStream $tokenWriter
@@ -195,7 +195,7 @@ class BasicStreamHead
      * inspect a token, possibly transforming it into one or more different
      * tokens
      *
-     * @param  array<Token> $token
+     * @param  array<Token> $tokens
      *         the tokens to process
      * @return array<Token>
      */
