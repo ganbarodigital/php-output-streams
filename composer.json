@@ -8,7 +8,7 @@
     "require": {
         "php": ">= 5.5",
         "ganbarodigital/php-exceptions": "^1.1",
-        "ganbarodigital/php-reflection": "^2.6.1",
+        "ganbarodigital/php-reflection": "^2.6.2",
         "ganbarodigital/php-data-containers": "^2.1"
     },
     "require-dev": {
