@@ -13,3 +13,4 @@
 * TypesafeWriters\WriteBoolean - trait for streams that accept a boolean as input
 * TypesafeWriters\WriteMixed - trait for streams that accept numbers as input
 * TypesafeWriters\WriteString - trait for streams that accept a string as input
+* TypesafeWriters\WriteToken - trait for streams that accept tokens as input
