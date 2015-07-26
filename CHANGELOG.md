@@ -4,6 +4,12 @@
 
 Nothing yet.
 
+## 1.0.1 - Sun Jul 25 2015
+
+### Fixes
+
+* Wrong package name in composer.json :(
+
 ## 1.0.0 - Sat Jul 18 2015
 
 Initial release.
