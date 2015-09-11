@@ -74,6 +74,6 @@ trait WriteEverythingElse
             return;
         }
 
-        throw new E4xx_UnsupportedType(SimpleType::fromMixed($data));
+        throw new E4xx_UnsupportedType(SimpleType::from($data));
     }
 }

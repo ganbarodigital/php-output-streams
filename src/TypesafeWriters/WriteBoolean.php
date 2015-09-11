@@ -57,7 +57,7 @@ trait WriteBoolean
     public function writeBoolean($data)
     {
         // robustness!
-        RequireLogical::checkMixed($data, E4xx_UnsupportedType::class);
+        RequireLogical::check($data, E4xx_UnsupportedType::class);
 
         // let the StreamHead do all the work :)
         $this->tokeniseAndWriteToStream($data);

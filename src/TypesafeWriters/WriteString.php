@@ -59,7 +59,7 @@ trait WriteString
     public function writeString($data)
     {
         // robustness!
-        RequireStringy::checkMixed($data, E4xx_UnsupportedType::class);
+        RequireStringy::check($data, E4xx_UnsupportedType::class);
 
         // let the StreamHead do all the work :)
         $this->tokeniseAndWriteToStream($data);

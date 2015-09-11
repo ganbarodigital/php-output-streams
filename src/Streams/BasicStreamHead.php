@@ -98,7 +98,7 @@ class BasicStreamHead
     public function __construct(StreamState $state, Tokeniser $tokeniser, $tokenProcessors, TokenStream $tokenWriter)
     {
         // robustness!
-        RequireTraversable::checkMixed($tokenProcessors);
+        RequireTraversable::check($tokenProcessors);
 
         // remember everything for later
         $this->streamState = $state;
@@ -119,7 +119,7 @@ class BasicStreamHead
      */
     public function write($data)
     {
-        $methodName = FirstMethodMatchingType::fromMixed($data, $this, 'write', E4xx_UnsupportedType::class);
+        $methodName = FirstMethodMatchingType::from($data, $this, 'write', E4xx_UnsupportedType::class);
         return $this->{$methodName}($data);
     }
 
@@ -164,7 +164,7 @@ class BasicStreamHead
     {
         // tokenize the string
         $tokens = $this->tokeniser->tokenise($data, $this->streamState);
-        RequireTraversable::checkMixed($tokens, E4xx_TokeniserDidNotReturnAnArray::class);
+        RequireTraversable::check($tokens, E4xx_TokeniserDidNotReturnAnArray::class);
 
         // send the tokens down the stream
         $this->writeTokensToStream($tokens);
@@ -230,7 +230,7 @@ class BasicStreamHead
 
         foreach ($tokens as $token) {
             $newTokens = $tokenProcessor->processToken($token, $this->streamState);
-            RequireTraversable::checkMixed($newTokens, E4xx_TokenProcessorDidNotReturnAnArray::class);
+            RequireTraversable::check($newTokens, E4xx_TokenProcessorDidNotReturnAnArray::class);
 
             $retval = array_merge($retval, $newTokens);
         }
