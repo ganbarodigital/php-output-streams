@@ -2,9 +2,14 @@
 
 ## develop branch
 
+Nothing yet.
+
+## 1.0.2 - Fri Sep 11 2015
+
 ### Fixes
 
 * TypesafeWriters\WriteMixed - deprecated; replace with WriteEverythingElse instead
+* Switched all calls to xxxMixed() in other packages for xxx() - xxxMixed() is now deprecated
 
 ## 1.0.1 - Sun Jul 25 2015
 
