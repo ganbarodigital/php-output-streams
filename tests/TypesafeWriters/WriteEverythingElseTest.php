@@ -53,15 +53,15 @@ use GanbaroDigital\TokenStreams\StreamTypes\MixedStream;
 use PHPUnit_Framework_TestCase;
 use stdClass;
 
-class WriteMixedTest_StreamHead extends BasicStreamHead implements MixedStream
+class WriteEverythingElseTest_StreamHead extends BasicStreamHead implements MixedStream
 {
-    use WriteMixed;
+    use WriteEverythingElse;
 }
 
 /**
- * @coversDefaultClass GanbaroDigital\TokenStreams\TypesafeWriters\WriteMixed
+ * @coversDefaultClass GanbaroDigital\TokenStreams\TypesafeWriters\WriteEverythingElse
  */
-class WriteMixedTest extends PHPUnit_Framework_TestCase
+class WriteEverythingElseTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @coversNothing
@@ -78,7 +78,7 @@ class WriteMixedTest extends PHPUnit_Framework_TestCase
         // ----------------------------------------------------------------
         // perform the change
 
-        $stream = new WriteMixedTest_StreamHead($state, $tokeniser, [], $writer);
+        $stream = new WriteEverythingElseTest_StreamHead($state, $tokeniser, [], $writer);
 
         // ----------------------------------------------------------------
         // test the results
@@ -87,9 +87,9 @@ class WriteMixedTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::writeMixed
+     * @covers ::writeEverythingElse
      */
-    public function testCanWriteMixedToStream()
+    public function testCanWriteEverythingElseToStream()
     {
         // ----------------------------------------------------------------
         // setup your test
@@ -98,15 +98,15 @@ class WriteMixedTest extends PHPUnit_Framework_TestCase
         $tokeniser = new StreamHeadTest_Tokeniser;
         $writer = new StreamHeadTest_TokenWriter;
 
-        $stream = new WriteMixedTest_StreamHead($state, $tokeniser, [], $writer);
+        $stream = new WriteEverythingElseTest_StreamHead($state, $tokeniser, [], $writer);
 
         $expectedResult = 1234;
 
         // ----------------------------------------------------------------
         // perform the change
 
-        $stream->writeMixed($expectedResult);
-        $stream->writeMixed($expectedResult);
+        $stream->writeEverythingElse($expectedResult);
+        $stream->writeEverythingElse($expectedResult);
 
         // ----------------------------------------------------------------
         // test the results
@@ -115,7 +115,7 @@ class WriteMixedTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::writeMixed
+     * @covers ::writeEverythingElse
      */
     public function testCanWriteBooleanToStream()
     {
@@ -126,15 +126,15 @@ class WriteMixedTest extends PHPUnit_Framework_TestCase
         $tokeniser = new StreamHeadTest_Tokeniser;
         $writer = new StreamHeadTest_TokenWriter;
 
-        $stream = new WriteMixedTest_StreamHead($state, $tokeniser, [], $writer);
+        $stream = new WriteEverythingElseTest_StreamHead($state, $tokeniser, [], $writer);
 
         $expectedResult = 'truefalse';
 
         // ----------------------------------------------------------------
         // perform the change
 
-        $stream->writeMixed(true);
-        $stream->writeMixed(false);
+        $stream->writeEverythingElse(true);
+        $stream->writeEverythingElse(false);
 
         // ----------------------------------------------------------------
         // test the results
@@ -143,7 +143,7 @@ class WriteMixedTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::writeMixed
+     * @covers ::writeEverythingElse
      */
     public function testCanWriteBooleanToStreamUsingGenericWriteMethod()
     {
@@ -154,7 +154,7 @@ class WriteMixedTest extends PHPUnit_Framework_TestCase
         $tokeniser = new StreamHeadTest_Tokeniser;
         $writer = new StreamHeadTest_TokenWriter;
 
-        $stream = new WriteMixedTest_StreamHead($state, $tokeniser, [], $writer);
+        $stream = new WriteEverythingElseTest_StreamHead($state, $tokeniser, [], $writer);
 
         $expectedResult = 'truefalse';
 
@@ -171,7 +171,7 @@ class WriteMixedTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers ::writeMixed
+     * @covers ::writeEverythingElse
      * @expectedException GanbaroDigital\TokenStreams\Exceptions\E4xx_UnsupportedType
      * @dataProvider provideNonMixedData
      */
@@ -184,16 +184,16 @@ class WriteMixedTest extends PHPUnit_Framework_TestCase
         $tokeniser = new StreamHeadTest_Tokeniser;
         $writer = new StreamHeadTest_TokenWriter;
 
-        $stream = new WriteMixedTest_StreamHead($state, $tokeniser, [], $writer);
+        $stream = new WriteEverythingElseTest_StreamHead($state, $tokeniser, [], $writer);
 
         // ----------------------------------------------------------------
         // perform the change
 
-        $stream->writeMixed($data);
+        $stream->writeEverythingElse($data);
     }
 
     /**
-     * @covers ::writeMixed
+     * @covers ::writeEverythingElse
      * @expectedException GanbaroDigital\TokenStreams\Exceptions\E4xx_UnsupportedType
      * @dataProvider provideNonMixedData
      */
@@ -206,7 +206,7 @@ class WriteMixedTest extends PHPUnit_Framework_TestCase
         $tokeniser = new StreamHeadTest_Tokeniser;
         $writer = new StreamHeadTest_TokenWriter;
 
-        $stream = new WriteMixedTest_StreamHead($state, $tokeniser, [], $writer);
+        $stream = new WriteEverythingElseTest_StreamHead($state, $tokeniser, [], $writer);
 
         // ----------------------------------------------------------------
         // perform the change

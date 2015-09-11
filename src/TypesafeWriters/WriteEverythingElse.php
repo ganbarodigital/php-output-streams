@@ -43,34 +43,37 @@
 
 namespace GanbaroDigital\TokenStreams\TypesafeWriters;
 
-use GanbaroDigital\Reflection\Requirements\RequireLogical;
+use GanbaroDigital\Reflection\ValueBuilders\SimpleType;
 use GanbaroDigital\TokenStreams\Exceptions\E4xx_UnsupportedType;
 
-trait WriteBoolean
+trait WriteEverythingElse
 {
-    /**
-     * write a boolean value to the stream
-     *
-     * @param  boolean $data
-     * @return void
-     */
-    public function writeBoolean($data)
-    {
-        // robustness!
-        RequireLogical::check($data, E4xx_UnsupportedType::class);
-
-        // let the StreamHead do all the work :)
-        $this->tokeniseAndWriteToStream($data);
-    }
+    // we *must* have writeString() or else we cannot function
+    use WriteString;
 
     /**
-     * tokenise data, and write it to the stream
+     * write an item of data to the stream
      *
-     * this is an entry point to call from a public writeXXX method
+     * this is the fallback when we do not know what else to write
      *
      * @param  mixed $data
-     *         the data to tokenise and write to the stream
+     *         the data to write
      * @return void
      */
-    abstract protected function tokeniseAndWriteToStream($data);
+    public function writeEverythingElse($data)
+    {
+        // force writing the data as a string
+        if (is_numeric($data)) {
+            $this->writeString((string)$data);
+            return;
+        }
+
+        if (is_bool($data)) {
+            $string = $data ? 'true' : 'false';
+            $this->writeString($string);
+            return;
+        }
+
+        throw new E4xx_UnsupportedType(SimpleType::from($data));
+    }
 }

@@ -58,7 +58,7 @@ trait WriteArray
     public function writeArray($data)
     {
         // robustness!
-        RequireTraversable::checkMixed($data, E4xx_UnsupportedType::class);
+        RequireTraversable::check($data, E4xx_UnsupportedType::class);
 
         foreach($data as $item) {
             // we do not know what $item is, so send it to our generic
