@@ -46,24 +46,34 @@ namespace GanbaroDigital\TokenStreams\TypesafeWriters;
 use GanbaroDigital\Reflection\ValueBuilders\SimpleType;
 use GanbaroDigital\TokenStreams\Exceptions\E4xx_UnsupportedType;
 
-trait WriteMixed
+trait WriteEverythingElse
 {
-    use GanbaroDigital\TokenStreams\TypesafeWriters\WriteEverythingElse;
+    // we *must* have writeString() or else we cannot function
+    use WriteString;
 
     /**
      * write an item of data to the stream
      *
      * this is the fallback when we do not know what else to write
      *
-     * @deprecated since 1.0.2
-     * @codeCoverageIgnore
-     *
      * @param  mixed $data
      *         the data to write
      * @return void
      */
-    public function writeMixed($data)
+    public function writeEverythingElse($data)
     {
-        $this->writeEverythingElse($data);
+        // force writing the data as a string
+        if (is_numeric($data)) {
+            $this->writeString((string)$data);
+            return;
+        }
+
+        if (is_bool($data)) {
+            $string = $data ? 'true' : 'false';
+            $this->writeString($string);
+            return;
+        }
+
+        throw new E4xx_UnsupportedType(SimpleType::fromMixed($data));
     }
 }

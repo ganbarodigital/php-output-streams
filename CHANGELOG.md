@@ -2,7 +2,9 @@
 
 ## develop branch
 
-Nothing yet.
+### Fixes
+
+* TypesafeWriters\WriteMixed - deprecated; replace with WriteEverythingElse instead
 
 ## 1.0.1 - Sun Jul 25 2015
 
